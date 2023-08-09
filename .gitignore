@@ -1,4 +1,4 @@
 /env
 /setenv.sh
 /__pycache__
-/db.db
+/finance.db
