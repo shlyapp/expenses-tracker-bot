@@ -1,4 +1,5 @@
 import os
+import logging
 
 from aiogram import Bot, Dispatcher, executor, types
 
@@ -8,13 +9,25 @@ from categories import Categories
 from middlewares import AccessMiddleware
 
 
-TELEGRAM_API_TOKEN = os.getenv('TELEGRAM_API_TOKEN')
-TELEGRAM_ACCESS_ID = os.getenv('TELEGRAM_ACCESS_ID')
+logging.basicConfig()
+logger = logging.getLogger(__name__)
+logger.setLevel(logging.DEBUG)
+
+try:
+    TELEGRAM_API_TOKEN = os.getenv('TELEGRAM_API_TOKEN')
+    TELEGRAM_ACCESS_ID = os.getenv('TELEGRAM_ACCESS_ID')
+    logger.debug("Env variable loaded")
+    logger.debug(f"Bot work with user id {TELEGRAM_ACCESS_ID}")
+except (ValueError):
+    logger.critical(
+        "Please, set correct env variables: \n"
+        "- TELEGRAM_API_TOKEN\n - TELEGRAM_ACCESS_ID\n")
+    raise
 
 bot = Bot(token=TELEGRAM_API_TOKEN)
 dp = Dispatcher(bot)
 dp.middleware.setup(AccessMiddleware(TELEGRAM_ACCESS_ID))
-
+ 
 
 @dp.message_handler(commands=['start', 'help'])
 async def send_welocome(message: types.Message):
