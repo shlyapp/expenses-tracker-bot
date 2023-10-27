@@ -1,4 +1,1 @@
-/env
-/setenv.sh
-/__pycache__
-/finance.db
+/venv
