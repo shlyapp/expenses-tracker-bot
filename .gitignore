@@ -1,2 +1,3 @@
 /venv
 /src/database/finance.db
+/src/database/__pycache__/
