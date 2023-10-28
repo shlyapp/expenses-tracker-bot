@@ -4,3 +4,4 @@
 /src/__pycache__/
 setenv.sh
 /src/models/__pycache__/
+/src/keyboards/__pycache__/
