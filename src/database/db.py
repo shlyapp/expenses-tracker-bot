@@ -3,7 +3,7 @@ import sqlite3
 from typing import Dict, List, Tuple
 
 
-connection = sqlite3.connect("finance.db")
+connection = sqlite3.connect("database/finance.db")
 cursor = connection.cursor()
 
 
@@ -27,7 +27,7 @@ def fetchall(table: str, columns: List[str]) -> List[Tuple]:
     for row in rows:
         dict_row = {}
         for index, column in enumerate(columns):
-            dict_row[columns] = row[index]
+            dict_row[column] = row[index]
         result.append(dict_row)
     return result
 
@@ -43,7 +43,7 @@ def get_cursor():
 
 
 def _init_db():
-    with open("createdb.sql") as file:
+    with open("database/createdb.sql") as file:
         sql = file.read()
     cursor.executescript(sql)
     connection.commit()
