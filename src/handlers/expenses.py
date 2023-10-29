@@ -49,7 +49,6 @@ async def finish(message: types.Message, state: FSMContext):
     await message.answer("Успешно добавлена новая запись о расходе!")
     async with state.proxy() as data:
         add_expense(data)
-        await message.answer(f"{data['category']}, {data['amount']}, {data['comment']}")
     await state.finish()
 
 
