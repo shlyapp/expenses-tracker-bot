@@ -1,1 +1,1 @@
-from handlers import client, expenses
+from handlers import client, expenses, statistics
