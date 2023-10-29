@@ -3,7 +3,7 @@ from typing import NamedTuple, Optional
 import datetime
 
 import database.db
-from utils import get_now_formatted, get_now_datetime
+from utils.utils import get_now_formatted, get_now_datetime
 
 
 class Message(NamedTuple):
