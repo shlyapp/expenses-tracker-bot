@@ -7,3 +7,4 @@ setenv.sh
 /src/keyboards/__pycache__/
 /src/handlers/__pycache__/
 /src/states/__pycache__/
+/src/utils/__pycache__/
