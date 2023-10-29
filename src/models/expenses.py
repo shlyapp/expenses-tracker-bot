@@ -1,5 +1,5 @@
 from sqlite3 import Cursor
-from typing import NamedTuple, Optional
+from typing import NamedTuple, Optional, Tuple
 import datetime
 
 import database.db
@@ -18,13 +18,12 @@ class Expense(NamedTuple):
     comment_text: str
 
 
-def add_expense(raw_message: str, category_name: str) -> None:
-    message = _parse_message(raw_message)
+def add_expense(data) -> None:
     database.db.insert("expense", {
-        "amount": message.amount,
+        "amount": data['amount'],
         "created": get_now_formatted(),
-        "category_name": category_name,
-        "comment_text": message.comment_text
+        "category_name": data['category'],
+        "comment_text": data['comment']
         })
 
 
@@ -52,9 +51,3 @@ def get_interval_statistic(date_start: datetime.datetime, date_end: datetime.dat
     if not result[0]:
         return "В этом месяце еще нет расходов"
     return result[0]
-
-
-def _parse_message(raw_message: str) -> Message:
-    parts = raw_message.split()
-    message = Message(int(parts[0]), parts[1])
-    return message
