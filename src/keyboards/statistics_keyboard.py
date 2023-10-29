@@ -1,10 +1,8 @@
-from aiogram.types import ReplyKeyboardMarkup, KeyboardButton
+from aiogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 
-day_statistics = KeyboardButton('День')
-week_statistics = KeyboardButton('Неделя')
-month_statistics = KeyboardButton('Месяц')
+day_statistics = InlineKeyboardButton(text='День', callback_data='День')
+month_statistics = InlineKeyboardButton(text='Месяц', callback_data='Месяц')
 
-statistics_keyboard = ReplyKeyboardMarkup()
+statistics_keyboard = InlineKeyboardMarkup()
 statistics_keyboard.add(day_statistics)
-statistics_keyboard.add(week_statistics)
 statistics_keyboard.add(month_statistics)
