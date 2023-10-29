@@ -1,0 +1,4 @@
+from keyboards.menu_keyboard import menu_keyboard
+from keyboards.statistics_keyboard import statistics_keyboard
+from keyboards.categories_keyboard import categories_keyboard
+from keyboards.comment_keyboard import comment_keyboard

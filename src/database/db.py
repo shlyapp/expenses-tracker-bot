@@ -1,20 +1,19 @@
-import os
+import sqlite3
 from typing import Dict, List, Tuple
 
-import sqlite3
 
-connection = sqlite3.connect("finance.db")
+connection = sqlite3.connect("database/finance.db")
 cursor = connection.cursor()
 
 
 def insert(table: str, column_values: Dict):
-    columns = ', '.join(column_values.keys())
+    columns = ", ".join(column_values.keys())
     values = [tuple(column_values.values())]
-    placeholders = ", ".join("?" * len(column_values.keys()))
+    placeholder = ", ".join("?" * len(column_values.keys()))
     cursor.executemany(
-            f"INSERT INTO {table} "
-            f"({columns}) "
-            f"VALUES ({placeholders})",
+            f"INSERT INTO {table}"
+            f"({columns})"
+            f"VALUES ({placeholder})",
             values)
     connection.commit()
 
@@ -43,19 +42,19 @@ def get_cursor():
 
 
 def _init_db():
-    with open("createdb.sql") as f:
-        sql = f.read()
+    with open("database/createdb.sql") as file:
+        sql = file.read()
     cursor.executescript(sql)
     connection.commit()
 
 
-def check_db_exists():
+def _check_db_exists():
     cursor.execute("SELECT name FROM sqlite_master "
-                   "WHERE type='table' AND name='expense'")
+                   "WHERE type='table' and name='category'")
     table_exists = cursor.fetchall()
     if table_exists:
         return
     _init_db()
+    
 
-
-check_db_exists()
+_check_db_exists()
