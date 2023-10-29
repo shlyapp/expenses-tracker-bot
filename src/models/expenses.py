@@ -50,4 +50,4 @@ def get_interval_statistic() -> str:
     result = cursor.fetchone()
     if not result[0]:
         return "В этом месяце еще нет расходов"
-    return result[0]
+    return f"Сумма расходов в этом месяце: {result[0]}"
